@@ -1,5 +1,7 @@
 package com.example.finalproject;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -20,11 +22,15 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.example.finalproject.style.CircleProgressBar;
 
 public class StartActivity extends AppCompatActivity {
     private ImageView iv_00;
     private ProgressBar prb_00;
     private TextView tv_00;
+
+
+    private CircleProgressBar circleProgressBar;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +56,11 @@ public class StartActivity extends AppCompatActivity {
         aa.setDuration(5000);
         iv_00.startAnimation(aa);
         aa.setAnimationListener(new AaImpl());*/
+
+        //自己改吧----------------------------------------------
+//        circleProgressBar = findViewById(R.id.progress_bar);
+//        // 设置进度条变化
+//        exchange(circleProgressBar);
 
         prb_00.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,5 +161,19 @@ public class StartActivity extends AppCompatActivity {
                     | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_FULLSCREEN;
             decorView.setSystemUiVisibility(uiOptions);
         }
+    }
+
+    //圆形进度条
+    public void exchange(View view) {
+        ValueAnimator valueAnimator = ObjectAnimator.ofFloat(0, 100);
+        valueAnimator.setDuration(4000);
+        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                float currentValue = (float) animation.getAnimatedValue();
+                circleProgressBar.setProgress((int) currentValue);
+            }
+        });
+        valueAnimator.start();
     }
 }

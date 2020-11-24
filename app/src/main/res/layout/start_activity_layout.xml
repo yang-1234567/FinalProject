@@ -12,9 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <ProgressBar
+    <com.example.finalproject.style.CircleProgressBar
         android:id="@+id/prb_00"
-        style="?android:attr/progressBarStyle"
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:max="5"
@@ -23,7 +22,13 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/iv_00"
         app:layout_constraintTop_toTopOf="@+id/iv_00"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+
+        app:progressTextColor="@color/colorAccent"
+        app:innerBackground="@color/colorPrimary"
+        app:outerBackground="@color/colorAccent"
+        app:roundWidth="2dp"
+        />
 
     <TextView
         android:id="@+id/tv_00"
